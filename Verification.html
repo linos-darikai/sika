@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Email Verification - ILoan</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <h2>Verify Your Email</h2>
+  <p>We have sent a 4-digit code to your email. Please enter it below.</p>
+
+  <form onsubmit="verifyCode(event)">
+    <label for="code">Verification Code:</label>
+    <input type="text" id="code" maxlength="4" required />
+    <button type="submit">Verify</button>
+    <div class="error" id="error-message"></div>
+  </form>
+
+  <script>
+    function verifyCode(event) {
+      event.preventDefault();
+      const codeEntered = document.getElementById("code").value;
+      const correctCode = "1234"; 
+
+      if (codeEntered === correctCode) {
+        alert("Verification successful! Your account is now active.");
+        window.location.href = "Password.html"; 
+      } else {
+        document.getElementById("error-message").textContent = "Invalid code. Please try again.";
+      }
+    }
+  </script>
+
+</body>
+</html>

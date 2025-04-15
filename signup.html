@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Account - ILoan</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <h2>Create Your ILoan Account</h2>
+
+  <form onsubmit="handleSubmit(event)">
+
+    <label for="Phone_Number">Phone Number:</label>
+    <input id="Phone_Number" name="Phone_Number" placeholder="Enter Phone Number" />
+
+    <label for="Student_Id">Student ID:</label>
+    <input id="Student_Id" name="Student_Id" placeholder="Enter your Student ID" />
+
+    <label for="First_Name">First Name:</label>
+    <input id="First_Name" name="First_Name" placeholder="Enter First Name" />
+
+    <label for="Last_Name">Last Name:</label>
+    <input id="Last_Name" name="Last_Name" placeholder="Enter Last Name" />
+
+    <label for="email">Email:</label>
+    <input id="email" name="email" placeholder="Enter your Ashesi Email" />
+
+    <a href="Verification.html"><button>Submit</button></a>
+
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert('Hello! You clicked the Sign Up button.');
+      window.location.href = 'Verification.html';
+    }
+  </script>
+
+</body>
+</html>
