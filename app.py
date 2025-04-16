@@ -35,16 +35,22 @@ def signup():
     return render_template('signup.html')
 
 
-@app.route('/lender')
+@app.route('/lender', methods=['GET', 'POST'])
 def lender():
-    return render_template('Lender.html')
+    if request.method == 'POST':
+        #handle logging the infor into the database
+        return redirect('dashboard')
+    return render_template('Lender_page.html')
 
 @app.route('/borrower')
 def borrower():
     return render_template('Borrower.html')
 
-@app.route('/email_verification')
+@app.route('/email_verification',methods=['GET','POST'])
 def email_verification():
+    if request.method == 'POST':
+        #logic of verifying email
+        return redirect('password')
     return render_template('EmailVerification.html')
 
 @app.route('/dashboard')

@@ -16,34 +16,19 @@
         <div id="lender" class="page">
             <h2>Lenders</h2>
 
-            <div>
+            <form action="{{url_for('borrower')}}" method="post">
                 <label for="requestAmount">Enter Request Amount (in credit)</label>
-                <input type="number" id="requestAmount" min="0">
-            </div>
+                <input name="amount_search" type="number" id="requestAmount" min="0">
+
+                <label for="interest_request">Enter Interest Rate</label>
+                <input name="interest_search" type="number" id="interest_request" min="0">
+
+                <label for="date_search">Enter Request Amount (in credit)</label>
+                <input name="date_search" type="number" id="date_search" min="0">
+                <button type="submit">search</button>
+            </form>
 
             <div>
-                <div class="suggestion-header">
-                    <label>Suggestions</label>
-                    <div>
-                        <div class="filter-dropdown">
-                            <button class="filter-button">Filter</button>
-                            <div class="filter-content">
-                                <label for="filterType">Filter by:</label>
-                                <select id="filterType">
-                                    <option value="rate">Interest Rate</option>
-                                    <option value="amount">Amount</option>
-                                    <option value="date">Return Date</option>
-                                </select>
-
-
-
-                                <button onclick="applyFilter()">Apply Filter</button>
-                            </div>
-                        </div>
-                        <span class="see-all" onclick="showAllSuggestions()">See All</span>
-                    </div>
-                </div>
-
                 <div class="suggestion-list">
                     <div class="suggestion-item" onclick="selectSuggestion('Alpha', 5000, '05/15/2025', '5%')">
                         <div><strong>Code Name:</strong> Alpha</div>
@@ -64,6 +49,10 @@
                         <div><strong>Rate:</strong> 4%</div>
                     </div>
                 </div>
+            </div>
+
+                
+                
             </div>
         </div>
 

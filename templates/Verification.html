@@ -15,9 +15,9 @@
   <h2>Verify Your Email</h2>
   <p>We have sent a 4-digit code to your email. Please enter it below.</p>
 
-  <form onsubmit="verifyCode(event)">
+  <form action="{{ url_for('verification')}}" method="post">
     <label for="code">Verification Code:</label>
-    <input type="text" id="code" maxlength="4" required />
+    <input type="text" id="code" name="code" maxlength="4" required />
     <button type="submit">Verify</button>
     <div class="error" id="error-message"></div>
   </form>
