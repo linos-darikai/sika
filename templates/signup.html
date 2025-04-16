@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Your Account - ILoan</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
 </head>
 <body>
+  <a href="{{ url_for('home') }}">
+    <button>Back</button>
+  </a>
 
   <h2>Create Your ILoan Account</h2>
 
-  <form onsubmit="handleSubmit(event)">
+  <form action="{{ url_for('signup') }}" method="post">
 
     <label for="Phone_Number">Phone Number:</label>
     <input id="Phone_Number" name="Phone_Number" placeholder="Enter Phone Number" />
@@ -26,17 +29,12 @@
 
     <label for="email">Email:</label>
     <input id="email" name="email" placeholder="Enter your Ashesi Email" />
-
-    <a href="Verification.html"><button>Submit</button></a>
+    <button type="submit">Submit</button>
+    
 
   </form>
 
-  <script>
-    function handleSubmit(event) {
-      event.preventDefault();
-      alert('Hello! You clicked the Sign Up button.');
-      window.location.href = 'Verification.html';
-    }
+  <script src="{{ url_for('static', filename='script.js') }}">   
   </script>
 
 </body>

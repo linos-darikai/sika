@@ -5,33 +5,24 @@
   <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>My Sign Up Page</title> 
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
 </head>
 
 <body>
+
   
   <h1>Welcome to ILoan!</h1>
 
   
   <p>Dear Ashesi Community, welcome to ILoan. Our vision is to grow together through easy, accessible, and community-focused loans.</p>
 
- 
-  <a href="signup.html"><button>Create Account</button></a>
-  <a href="login_verification.html"><button>Login</button></a>
+
+  <a href="{{ url_for('signup') }}"><button>Create Account</button></a>
+  <a href="{{ url_for('login') }}"><button>Login</button></a>
   
 
   
-  <script>
-  
-    function handleSignup() {
-      alert('Hello! You clicked the Sign Up button.');
-    }
-
-    
-    function handleLogin() {
-      alert('Hello! You clicked the Login button.');
-    }
-  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>

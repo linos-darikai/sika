@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  <title>
+    Loan Web App
+  </title>
+</head>
+<body>
+  <!-- Login Page -->
+  <form action="{{ url_for('login') }}" method="post" class="container" id="loginPage">
+    <h2>Login</h2>
+    <input name="email_input" class="loginInputs" type="email" placeholder="Email" />
+    <input name="password_input" class="loginInputs" type="password" placeholder="Password" />
+    <a href="{{ url_for('email_verification')}}">
+      <button type="button">Forgot Password</button>
+    </a>    
+    <button type="submit">Login</button>
+  </form>
+  <a href="{{ url_for('home') }}">
+    <button>Back</button>
+  </a>
+
+  <script src="{{ url_for('static', filename='script.js') }}"> 
+  </script>
+</body>
+</html>

@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Email Verification - ILoan</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
 </head>
 <body>
+  <a href="{{ url_for('signup') }}">
+    <button>Back</button>
+  </a>
+
 
   <h2>Verify Your Email</h2>
   <p>We have sent a 4-digit code to your email. Please enter it below.</p>
@@ -18,19 +22,7 @@
     <div class="error" id="error-message"></div>
   </form>
 
-  <script>
-    function verifyCode(event) {
-      event.preventDefault();
-      const codeEntered = document.getElementById("code").value;
-      const correctCode = "1234"; 
-
-      if (codeEntered === correctCode) {
-        alert("Verification successful! Your account is now active.");
-        window.location.href = "Password.html"; 
-      } else {
-        document.getElementById("error-message").textContent = "Invalid code. Please try again.";
-      }
-    }
+  <script src="{{ url_for('static', filename='script.js') }}"> 
   </script>
 
 </body>
