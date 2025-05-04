@@ -27,7 +27,7 @@
     <main>
         <div class="container">
             <div class="dashboard-header">
-                <h1 class="dashboard-title">Hi, User</h1>
+                <h1 class="dashboard-title">Hi, {{user.First_Name}}</h1>
                 <div class="user-actions">
                     <a href="{{ url_for('userprofile') }}" class="btn btn-secondary">My Profile</a>
                 </div>

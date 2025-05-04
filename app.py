@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 import random
@@ -40,8 +40,8 @@ class User(db.Model):
 class Loan(db.Model):
     __tablename__ = 'Loan'
     loan_ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    borrower_ID = db.Column(db.String(8), db.ForeignKey('User.User_ID'))
-    lender_ID = db.Column(db.String(8), db.ForeignKey('User.User_ID'))
+    borrower_ID = db.Column(db.String(8), db.ForeignKey('User.User_ID'), nullable=True)
+    lender_ID = db.Column(db.String(8), db.ForeignKey('User.User_ID'), nullable=True)
     amount = db.Column(db.Numeric(10, 2), nullable=False)
     duration_months = db.Column(db.Integer, nullable=False)
     loan_status = db.Column(db.Enum('pending', 'approved', 'Rejected', 'Disbursed', 'settled'))
@@ -87,7 +87,9 @@ def generate_user_id():
 def generate_verification_code():
     """Generate a 6-digit verification code"""
     return ''.join(random.choices(string.digits, k=4))
-
+def generate_loan_code():
+    """Generate a 6-digit verification code"""
+    return ''.join(random.choices(string.digits, k=7))
 def login_required(f):
     """Decorator to require login for certain routes"""
     @wraps(f)
@@ -171,7 +173,7 @@ def signup():
         return redirect(url_for('verification')) 
     return render_template('signup.html')
 
-@app.route('/email_verification', methods=['GET', 'POST'])
+@app.route('/verification', methods=['GET', 'POST'])
 def verification():
     if request.method == 'POST':
         try:
@@ -259,23 +261,24 @@ def login():
         if user:
             # Login successful
             session['user_id'] = user.User_ID
-            flash('Login successful!', 'success')
+            session['user_name'] = user.First_Name
+            print('Login successful!', 'success')
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid email or password', 'error')
+            print('Invalid email or password', 'error')
     
     return render_template('login.html')
 
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
-    flash('You have been logged out', 'info')
+    print('You have been logged out', 'info')
     return redirect(url_for('home'))
 
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    user = User.query.get(session['user_id'])
+    user = User.query.get(session.get('user_id'))
     
     # Get user's loans as borrower
     borrowed_loans = Loan.query.filter_by(borrower_ID=user.User_ID).all()
@@ -291,7 +294,7 @@ def dashboard():
 @app.route('/userprofile', methods=['GET', 'POST'])
 @login_required
 def userprofile():
-    user = User.query.get(session['user_id'])
+    user = User.query.get(session.get('user_id'))
     
     if request.method == 'POST':
         # Update user profile
@@ -304,25 +307,32 @@ def userprofile():
         # Save changes
         db.session.commit()
         
-        flash('Profile updated successfully!', 'success')
+        print('Profile updated successfully!', 'success')
         return redirect(url_for('dashboard'))
     
     return render_template('userprofile.html', user=user)
 
-@app.route('/borrower', methods=['GET', 'POST'])
+@app.route('/lender', methods=['GET', 'POST'])
 @login_required
-def borrower():
+def lender():
     if request.method == 'POST':
         # Create a new loan request
         amount = request.form.get('amount')
-        duration = request.form.get('duration')
-        purpose = request.form.get('purpose')
-        
+        bank = request.form.get('bankNo')
+     
+        user = User.query.get(session.get('user_id'))
+        if not user.Bank_Account:
+            user.Bank_Account =  bank
+            db.session.commit()
+
+   
         loan = Loan(
-            borrower_ID=session['user_id'],
+            borrower_ID=None,
+            loan_ID= generate_loan_code(),
+            lender_ID=session.get('user_id'),
             amount=amount,
-            duration_months=duration,
-            purpose=purpose,
+            duration_months=1,
+            purpose="other",
             loan_status='pending',
             date_requested=datetime.now().date()
         )
@@ -330,56 +340,70 @@ def borrower():
         db.session.add(loan)
         db.session.commit()
         
-        flash('Loan request submitted successfully!', 'success')
+        print('Loan request submitted successfully!', 'success')
         return redirect(url_for('dashboard'))
     
-    return render_template('borrower.html')
+    return render_template('lender.html')
 
-@app.route('/lender', methods=['GET', 'POST'])
+@app.route('/borrower', methods=['GET', 'POST'])
 @login_required
-def lender():
-    # Get all pending loans
-    pending_loans = Loan.query.filter_by(loan_status='pending').all()
+def borrower():
+    user = User.query.get(session.get('user_id'))
     
     if request.method == 'POST':
+        # Extract loan data from form
         loan_id = request.form.get('loan_id')
-        action = request.form.get('action')
+        payment_method = request.form.get('payment_method')
+        payment_details = request.form.get('payment_details')
         
+        # Get the loan from database
         loan = Loan.query.get(loan_id)
         
-        if action == 'approve':
-            loan.lender_ID = session['user_id']
-            loan.loan_status = 'approved'
-            flash('Loan approved!', 'success')
-        elif action == 'reject':
-            loan.loan_status = 'Rejected'
-            flash('Loan rejected', 'info')
-        
-        db.session.commit()
-        return redirect(url_for('lender'))
+        if loan:
+            # Update loan with borrower information
+            loan.borrower_ID = user.User_ID
+            
+            
+            # Commit the changes
+            db.session.commit()
+            
+            # Add a flash message for confirmation
+            print('Loan successfully processed!', 'success')
+        else:
+            print('Loan not found or already taken.', 'error')
+            
+        return redirect(url_for('dashboard'))
     
-    return render_template('lender.html', pending_loans=pending_loans)
+    # For GET requests, fetch pending loans for display
+    pending_loans = Loan.query.filter_by(borrower_ID=None).all()
+    return render_template('borrower.html', pending_loans=pending_loans)
+
 
 @app.route('/get_suggestions', methods=['POST'])
+@login_required
 def get_suggestions():
-    amount = float(request.form.get('amount', 0))
+    amount = request.form.get('amount', 0, type=int)
     
-    # Query the database for users with good credit scores
-    potential_lenders = User.query.filter(User.credit_score >= 7.0).all()
+    # Query the database for loans that match the criteria
+    loans = Loan.query.filter_by(borrower_ID=None).all()
     
     suggestions = []
-    for lender in potential_lenders:
-        # In a real app, you would have more complex logic
-        # This is simplified for demonstration
-        if lender.User_ID != session.get('user_id'):
+    for loan in loans:
+        # You can add logic here to filter based on amount if needed
+        # For example: if loan.amount >= amount:
+        
+        lender = User.query.get(loan.lender_ID)
+        if lender:
             suggestions.append({
-                'code_name': lender.code_name,
-                'amount': amount,  # Assume they can lend the requested amount
+                'code_name': lender.First_Name,  # Using first name as code name
+                'amount': loan.amount,
                 'return_date': (datetime.now() + timedelta(days=30)).strftime('%m/%d/%Y'),
-                'rate': '5%'  # Simplified interest rate
+                'rate': "5%",  # Simplified interest rate
+                'loan_id': loan.loan_ID # Important: Include the loan ID for database operations
             })
     
-    return render_template('partials/getStuff.html', suggestions=suggestions)
+    # Return JSON response
+    return jsonify({"suggestions": suggestions})
 
 @app.route('/loan_details/<int:loan_id>')
 @login_required
