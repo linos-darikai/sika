@@ -1,10 +1,10 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LendConnect - User Dashboard</title>  
-    <link rel="stylesheet" href="dashboardCss.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboardCss.css') }}">
 
 </head>
 <body>
@@ -13,13 +13,13 @@
     <div class="overlay"></div>
     
     <header>
-        <a href="homepage.html" class="logo">LendConnect</a>
+        <a href="{{ url_for('home') }}" class="logo">LendConnect</a>
         <nav>
             <ul>
-                <li><a href="homepage.html">Home</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="userprofile.html">Profile</a></li>
-                <li><a href="homepage.html">Logout</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('userprofile') }}">Profile</a></li>
+                <li><a href="{{ url_for('home') }}">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -29,7 +29,7 @@
             <div class="dashboard-header">
                 <h1 class="dashboard-title">Hi, User</h1>
                 <div class="user-actions">
-                    <a href="userprofile.html" class="btn btn-secondary">My Profile</a>
+                    <a href="{{ url_for('userprofile') }}" class="btn btn-secondary">My Profile</a>
                 </div>
             </div>
             
@@ -45,7 +45,7 @@
                     <div class="loan-options">
                         <div class="loan-option">
                             <div class="loan-icon">💰</div> 
-                            <h3><a href="borrower.html" style="color: inherit; text-decoration: none;">Borrow Money</a></h3>
+                            <h3><a href="{{ url_for('borrower') }}" style="color: inherit; text-decoration: none;">Borrow Money</a></h3>
                             <p>Apply for a new loan with competitive rates</p>
                         </div>
                         
@@ -68,7 +68,7 @@
                     <div class="loan-options">
                         <div class="loan-option">
                             <div class="loan-icon">💸</div>
-                            <h3><a href="lender.html" style="color: inherit; text-decoration: none;">Lend Money</a></h3>
+                            <h3><a href="{{ url_for('lender') }}" style="color: inherit; text-decoration: none;">Lend Money</a></h3>
                             <p>Invest your money and earn interest</p>
                         </div>
                         

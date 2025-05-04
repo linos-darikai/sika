@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoinLective - Borrower Dashboard</title>
-    <link rel="stylesheet" href="borrowerCss.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/borrowerCss.css') }}">
 
 </head>
 <body>
@@ -12,13 +12,13 @@
     <div class="overlay"></div>
     
     <header>
-        <a href="homepage.html" class="logo">CoinLective</a>
+        <a href="{{ url_for('home') }}" class="logo">CoinLective</a>
         <nav>
             <ul>
-                <li><a href="homepage.html">Home</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="#">My Loans</a></li>
-                <li><a href="userprofile.html">Profile</a></li>
-                <li><a href="homepage.html">Logout</a></li>
+                <li><a href="{{ url_for('userprofile') }}">Profile</a></li>
+                <li><a href="{{ url_for('home') }}">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -155,4 +155,4 @@
         <p>&copy; 2025 CoinLective. All rights reserved.</p>
     </footer>
     
-    <script src="borrowerJs.js"></script>
+    <script src="{{ url_for('static', filename='js/borrowerJs.js') }}"></script>

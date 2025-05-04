@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoinLective - Create Your Account</title>
-    <link rel="stylesheet" href="signUpCss.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signUpCss.css') }}">
 
 </head>
 <body>
@@ -12,12 +12,12 @@
     <div class="overlay"></div>
     
     <header>
-        <a href="homepage.html" class="logo">CoinLective</a>
+        <a href="{{ url_for('home') }}" class="logo">CoinLective</a>
         <nav>
             <ul>
-                <li><a href="homepage.html">Home</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -65,7 +65,7 @@
                 </form>
                 
                 <div class="login-link">
-                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                    <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
                 </div>
             </div>
         </div>
@@ -74,6 +74,6 @@
     <footer>
         <p>&copy; 2025 CoinLective. All rights reserved.</p>
     </footer>
-    <script src="signupJs.js"></script>
+    <script src="{{ url_for('static', filename='js/signupJs.js') }}"></script>
 </body>
 </html>

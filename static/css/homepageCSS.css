@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     color: rgb(185, 183, 183);
-    background-image: url('images (3).jpg');
+    background-image: url("../images/background.jpg");
     background-blend-mode: darken;
 }
 .overlay {

@@ -11,7 +11,9 @@ body {
     display: flex;
     flex-direction: column;
     color: white;
-    background-color: #000;
+    background-image: url('../images/background.jpg');
+    background-blend-mode: darken;
+
 }
 
 .bg-image {
@@ -20,7 +22,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images (3).jpg');
+    background-image: url('Database Project/images (6).jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -42,7 +44,6 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -77,16 +78,16 @@ main {
     padding: 2rem;
 }
 
-.password-container {
+.login-container {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     padding: 2.5rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
 
-.password-container h2 {
+.login-container h2 {
     color: #059669;
     text-align: center;
     margin-bottom: 2rem;
@@ -95,13 +96,6 @@ main {
 
 .form-group {
     margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-weight: 500;
 }
 
 .form-control {
@@ -118,44 +112,11 @@ main {
 .form-control:focus {
     outline: none;
     border-color: #059669;
-    box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
 .form-control::placeholder {
     color: rgba(255, 255, 255, 0.7);
-}
-
-.password-requirements {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 5px;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.password-requirements h3 {
-    margin-bottom: 0.5rem;
-    color: #059669;
-    font-size: 1rem;
-}
-
-.password-requirements ul {
-    list-style-type: none;
-    padding-left: 1rem;
-}
-
-.password-requirements li {
-    margin-bottom: 0.3rem;
-    position: relative;
-    padding-left: 1.2rem;
-}
-
-.password-requirements li:before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #059669;
 }
 
 .btn {
@@ -183,13 +144,50 @@ main {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.btn-link {
+    background: transparent;
+    color: #059669;
+    padding: 0;
+    border: none;
+    text-align: left;
+    width: auto;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.register-link a {
+    color: #059669;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
 footer {
     text-align: center;
     padding: 1.5rem;
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
-    background-color: rgba(0, 0, 0, 0.5);
-    margin-top: auto;
 }
 
 @media (max-width: 768px) {
@@ -199,7 +197,7 @@ footer {
         gap: 1rem;
     }
     
-    .password-container {
+    .login-container {
         padding: 1.5rem;
     }
 }
