@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepageCSS.css') }}">
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <a href="#" class="logo">YourApp</a>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">Verify Your Email</h2>
+                </div>
+                <form method="POST" action="{{ url_for('email_verification') }}">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-control" 
+                            placeholder="Enter your email" 
+                            required>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 YourApp. All rights reserved.
+    </footer>
+</body>
+</html>

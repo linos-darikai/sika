@@ -28,9 +28,10 @@
         <div class="container">
             <div class="profile-header">
                 <h1 class="profile-title">Account Details</h1>
-                <div>
-                    <button class="btn btn-primary">Edit</button>
-                </div>
+                <div class="code-name">
+                         Your unique code name: <span id="codename">GreenFalcon92</span>
+                    </div>
+               
             </div>
             
             <div class="profile-content">
@@ -39,26 +40,34 @@
                         <h2 class="card-title">Personal Information</h2>
                     </div>
                     
-                    <form>
+                    <form id="userprofile" method="post" action="{{url_for('userprofile')}}">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" value="John" disabled>
+                            <input type="text" id="name" name="name" class="form-control" value="John" disabled>
                         </div>
                         
                         <div class="form-group">
                             <label for="surname">Surname</label>
-                            <input type="text" id="surname" class="form-control" value="Doe" disabled>
+                            <input type="text" name="surname" id="surname" class="form-control" value="Doe" disabled>
                         </div>
                         
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" value="john.doe@example.com" disabled>
+                            <input type="email" name="email"  id="email" class="form-control" value="john.doe@example.com" disabled>
                         </div>
                         
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" value="+1 (555) 123-4567" disabled>
+                            <input type="tel" id="phone" name="phone" class="form-control" value="+1 (555) 123-4567" disabled>
                         </div>
+                        <div class="form-group">
+                            <label for="bank-account">Bank Account</label>
+                            <input type="text" name="bank"  id="bank-account" class="form-control" value="**** **** **** 1234" disabled>
+                        </div>                       
+                        <div>
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </div>                      
+                      
                     </form>
                 </div>
                 
@@ -66,29 +75,6 @@
                     <div class="card-header">
                         <h2 class="card-title">Banking Information</h2>
                     </div>
-                    
-                    <form>
-                        <div class="form-group">
-                            <label for="bank-account">Bank Account</label>
-                            <input type="text" id="bank-account" class="form-control" value="**** **** **** 1234" disabled>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="main-account">Main Account</label>
-                            <input type="text" id="main-account" class="form-control" value="Checking Account" disabled>
-                        </div>
-                        
-                        <div class="code-name">
-                            Your unique code name: <span>GreenFalcon92</span>
-                        </div>
-                        
-                        <div class="transaction-history">
-                            <a href="#" class="transaction-link">
-                                <span>View Transaction History</span>
-                                <span>→</span>
-                            </a>
-                        </div>
-                    </form>
                 </div>
                 
                 <div class="profile-card">

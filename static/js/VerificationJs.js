@@ -1,3 +1,6 @@
+
+
+
 function moveToNext(input, position) {
     if (input.value.length === 1) {
         if (position < 4) {
@@ -6,43 +9,26 @@ function moveToNext(input, position) {
     }
 }
 
-function verifyCode(event) {
-    event.preventDefault();
-    
-    // Get the code from all inputs
-    const inputs = document.getElementsByClassName('code-input');
-    let codeEntered = '';
-    
-    for (let i = 0; i < inputs.length; i++) {
-        codeEntered += inputs[i].value;
-    }
-    
-    const correctCode = "1234"; // For demonstration
-    
-    if (codeEntered === correctCode) {
-        // Clear any error message
-        document.getElementById('error-message').textContent = '';
-        
-        // Show success message
-        alert("Verification successful! Your account is now active.");
-        window.location.href = "Password.html"; 
-    } else {
-        document.getElementById('error-message').textContent = "Invalid code. Please try again.";
-        
-        // Clear all inputs for retry
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].value = '';
-        }
-        
-        // Focus on first input
-        inputs[0].focus();
-    }
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('verificationForm');
 
-function resendCode(event) {
-    event.preventDefault();
-    alert("A new verification code has been sent to your email.");
-}
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();  // Stop automatic form submission
+
+        const inputs = document.getElementsByClassName('code-input');
+        let codeEntered = '';
+
+        for (let i = 0; i < inputs.length; i++) {
+            codeEntered += inputs[i].value;
+        }
+
+        // Set the value of the hidden input
+        document.getElementById('verification_code').value = codeEntered;
+
+        // Now manually submit the form
+        form.submit();
+    });
+});
 
 // Set focus to first input on page load
 document.addEventListener('DOMContentLoaded', function() {

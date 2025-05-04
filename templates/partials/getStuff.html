@@ -1,0 +1,8 @@
+{% for suggestion in suggestions %}
+    <div class="suggestion-item" onclick="selectSuggestion('{{ suggestion.code_name }}', {{ suggestion.amount }}, '{{ suggestion.return_date }}', '{{ suggestion.rate }}')">
+        <div><strong>Code Name:</strong> {{ suggestion.code_name }}</div>
+        <div><strong>Amount:</strong> {{ suggestion.amount }}</div>
+        <div><strong>Return Date:</strong> {{ suggestion.return_date }}</div>
+        <div><strong>Rate:</strong> {{ suggestion.rate }}</div>
+    </div>
+{% endfor %}

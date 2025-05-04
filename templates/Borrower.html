@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoinLective - Borrower Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/borrowerCss.css') }}">
-
 </head>
 <body>
     <div class="bg-image"></div>
@@ -16,7 +15,7 @@
         <nav>
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="#">My Loans</a></li>
+                <li><a href="{{ url_for('dashboard') }}">My Loans</a></li>
                 <li><a href="{{ url_for('userprofile') }}">Profile</a></li>
                 <li><a href="{{ url_for('home') }}">Logout</a></li>
             </ul>
@@ -35,10 +34,16 @@
                     <h2 class="card-title">List of Available Lenders</h2>
                 </div>
                 
-                <div class="form-group">
-                    <label for="requestAmount">Enter Request Amount (in credit)</label>
-                    <input type="number" id="requestAmount" class="form-control" min="0" placeholder="Enter amount">
-                </div>
+                <form id="requestForm" action="{{ url_for('get_suggestions') }}" method="POST">
+                    <div class="form-group">
+                        <label for="requestAmount">Enter Request Amount (in credit)</label>
+                        <input type="number" id="requestAmount" name="amount" class="form-control" min="0" placeholder="Enter amount">
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Search Lenders</button>
+                    </div>
+                </form>
                 
                 <div class="filter-container">
                     <h3 style="color: #059669;">Suggestions</h3>
@@ -53,33 +58,15 @@
                                         <option value="amount">Amount</option>
                                         <option value="date">Return Date</option>
                                     </select>
-                                    <button onclick="applyFilter()" class="btn btn-primary" style="width: 100%;">Apply Filter</button>
+                                    <button id="applyFilterBtn" class="btn btn-primary" style="width: 100%;">Apply Filter</button>
                                 </div>
                             </div>
                         </div>
                         <span class="see-all" onclick="showAllSuggestions()">See All</span>
                     </div>
                 </div>
-                
                 <div class="suggestion-list">
-                    <div class="suggestion-item" onclick="selectSuggestion('Alpha', 5000, '05/15/2025', '5%')">
-                        <div><strong>Code Name:</strong> Alpha</div>
-                        <div><strong>Amount:</strong> 5000</div>
-                        <div><strong>Return Date:</strong> 05/15/2025</div>
-                        <div><strong>Rate:</strong> 5%</div>
-                    </div>
-                    <div class="suggestion-item" onclick="selectSuggestion('Beta', 7500, '06/20/2025', '4.5%')">
-                        <div><strong>Code Name:</strong> Beta</div>
-                        <div><strong>Amount:</strong> 7500</div>
-                        <div><strong>Return Date:</strong> 06/20/2025</div>
-                        <div><strong>Rate:</strong> 4.5%</div>
-                    </div>
-                    <div class="suggestion-item" onclick="selectSuggestion('Gamma', 10000, '07/30/2025', '4%')">
-                        <div><strong>Code Name:</strong> Gamma</div>
-                        <div><strong>Amount:</strong> 10000</div>
-                        <div><strong>Return Date:</strong> 07/30/2025</div>
-                        <div><strong>Rate:</strong> 4%</div>
-                    </div>
+                    <!-- Suggestions will be loaded here via AJAX -->
                 </div>
             </div>
             
@@ -145,7 +132,7 @@
                     <h2>Thank You</h2>
                     <h3>for partnering with us</h3>
                     <p>Money has been sent<br>to Momo / Bank Account</p>
-                    <button class="done-button" onclick="window.location.href='dashboard.html'">Done</button>
+                    <button class="done-button" onclick="window.location.href='{{ url_for('dashboard') }}'">Done</button>
                 </div>
             </div>
         </div>
@@ -155,4 +142,11 @@
         <p>&copy; 2025 CoinLective. All rights reserved.</p>
     </footer>
     
-    <script src="{{ url_for('static', filename='js/borrowerJs.js') }}"></script>
+    <script>
+  
+    </script>
+</body>
+</html>
+     
+
+   

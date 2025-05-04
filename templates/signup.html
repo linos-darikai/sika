@@ -33,7 +33,7 @@
                     <h2 class="card-title">Sign Up</h2>
                 </div>
                 
-                <form id="signupForm" onsubmit="handleSubmit(event)">
+                <form id="signupForm" method="post" action="{{ url_for('signup') }}">
                     <div class="form-group">
                         <label for="Phone_Number">Phone Number:</label>
                         <input type="tel" id="Phone_Number" name="Phone_Number" class="form-control" placeholder="Enter Phone Number" required>
@@ -74,6 +74,5 @@
     <footer>
         <p>&copy; 2025 CoinLective. All rights reserved.</p>
     </footer>
-    <script src="{{ url_for('static', filename='js/signupJs.js') }}"></script>
 </body>
 </html>
