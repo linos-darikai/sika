@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrower Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <title>CoinLective - Borrower Dashboard</title>
+    <link rel="stylesheet" href="borrowerCss.css">
+
 </head>
-
 <body>
-    <div class="container">
-        <h1 style="text-align: center;">Borrowers Page</h1>
-
-        <!-- Lender Page -->
-        <div id="lender" class="page">
-            <h2>Lenders</h2>
-
-            <form action="{{url_for('borrower')}}" method="post">
-                <label for="requestAmount">Enter Request Amount (in credit)</label>
-                <input name="amount_search" type="number" id="requestAmount" min="0">
-
-                <label for="interest_request">Enter Interest Rate</label>
-                <input name="interest_search" type="number" id="interest_request" min="0">
-
-                <label for="date_search">Enter Request Amount (in credit)</label>
-                <input name="date_search" type="number" id="date_search" min="0">
-                <button type="submit">search</button>
-            </form>
-
-            <div>
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+    
+    <header>
+        <a href="homepage.html" class="logo">CoinLective</a>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#">My Loans</a></li>
+                <li><a href="userprofile.html">Profile</a></li>
+                <li><a href="homepage.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Welcome, Borrower</h1>
+            </div>
+            
+            <!-- Lender List Page -->
+            <div id="lender" class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">List of Available Lenders</h2>
+                </div>
+                
+                <div class="form-group">
+                    <label for="requestAmount">Enter Request Amount (in credit)</label>
+                    <input type="number" id="requestAmount" class="form-control" min="0" placeholder="Enter amount">
+                </div>
+                
+                <div class="filter-container">
+                    <h3 style="color: #059669;">Suggestions</h3>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="filter-dropdown">
+                            <button class="filter-button">Filter Options</button>
+                            <div class="filter-content">
+                                <div style="margin-bottom: 1rem;">
+                                    <label for="filterType" style="display: block; margin-bottom: 0.5rem; color: #059669;">Filter by:</label>
+                                    <select id="filterType" class="form-control" style="margin-bottom: 1rem;">
+                                        <option value="rate">Interest Rate</option>
+                                        <option value="amount">Amount</option>
+                                        <option value="date">Return Date</option>
+                                    </select>
+                                    <button onclick="applyFilter()" class="btn btn-primary" style="width: 100%;">Apply Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="see-all" onclick="showAllSuggestions()">See All</span>
+                    </div>
+                </div>
+                
                 <div class="suggestion-list">
                     <div class="suggestion-item" onclick="selectSuggestion('Alpha', 5000, '05/15/2025', '5%')">
                         <div><strong>Code Name:</strong> Alpha</div>
@@ -50,84 +82,77 @@
                     </div>
                 </div>
             </div>
-
+            
+            <!-- Confirm Details Page -->
+            <div id="confirm" class="dashboard-card" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">Confirm Details</h2>
+                </div>
                 
+                <div class="form-group">
+                    <label for="codeName">Code Name</label>
+                    <input type="text" id="codeName" class="form-control" readonly>
+                </div>
                 
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" class="form-control" min="0" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="returnDate">Return Date</label>
+                    <input type="text" id="returnDate" class="form-control" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rate">Rate</label>
+                    <input type="text" id="rate" class="form-control" readonly>
+                </div>
+                
+                <div class="button-row">
+                    <button class="back-button" onclick="showPage('lender')">Back</button>
+                    <button class="btn btn-primary" onclick="showPage('memo')">Confirm & Enter Details</button>
+                </div>
+            </div>
+            
+            <!-- Memo & Bank Page -->
+            <div id="memo" class="dashboard-card" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">Enter Payment Details</h2>
+                </div>
+                
+                <div class="form-group">
+                    <label for="momoNumber">Enter Momo Number</label>
+                    <input type="text" id="momoNumber" class="form-control" placeholder="Enter mobile money number">
+                </div>
+                
+                <div class="or-divider">OR</div>
+                
+                <div class="form-group">
+                    <label for="bankAccount">Enter Bank Account</label>
+                    <input type="text" id="bankAccount" class="form-control" placeholder="Enter bank account details">
+                </div>
+                
+                <div class="button-row">
+                    <button class="back-button" onclick="showPage('confirm')">Back</button>
+                    <button class="btn btn-primary" onclick="showPage('thank-you')">Confirm</button>
+                </div>
+            </div>
+            
+            <!-- Thank You Page -->
+            <div id="thank-you" class="dashboard-card" style="display: none;">
+                <div class="thank-you">
+                    <h2>Thank You</h2>
+                    <h3>for partnering with us</h3>
+                    <p>Money has been sent<br>to Momo / Bank Account</p>
+                    <button class="done-button" onclick="window.location.href='dashboard.html'">Done</button>
+                </div>
             </div>
         </div>
-
-        <!-- Confirm Details Page -->
-        <div id="confirm" class="page" style="display: none;">
-            <h2>Confirm Details</h2>
-
-            <div>
-                <label for="codeName">Code Name</label>
-                <input type="text" id="codeName" readonly>
-            </div>
-
-            <div>
-                <label for="amount">Amount</label>
-                <input type="number" id="amount" min="0" readonly>
-            </div>
-
-            <div>
-                <label for="returnDate">Return Date</label>
-                <input type="text" id="returnDate" readonly>
-            </div>
-
-            <div>
-                <label for="rate">Rate</label>
-                <input type="text" id="rate" readonly>
-            </div>
-
-            <div class="button-row">
-                <button class="back-button" onclick="showPage('lender')">Back</button>
-                <button onclick="showPage('memo')">Confirm & Enter</button>
-            </div>
-        </div>
-
-        <!-- Memo & Bank Page -->
-        <div id="memo" class="page" style="display: none;">
-            <h2>Enter Details</h2>
-
-            <div>
-                <label for="memoNumber">Enter Memo Number</label>
-                <input type="text" id="memoNumber">
-            </div>
-
-            <div style="margin: 15px 0; text-align: center;">
-                OR
-            </div>
-
-            <div>
-                <label for="bankAccount">Enter Bank Account</label>
-                <input type="text" id="bankAccount">
-            </div>
-
-            <div class="button-row">
-                <button class="back-button" onclick="showPage('confirm')">Back</button>
-                <button class="confirm-button" onclick="showPage('thank-you')">Confirm</button>
-            </div>
-        </div>
-
-        <!-- Thank You Page -->
-        <div id="thank-you" class="page" style="display: none;">
-            <div class="thank-you">
-                <h2>Thank You</h2>
-                <h3>for</h3>
-                <button class="done-button">Done.</button>
-
-                <p>Money has been sent<br>to Memo/Bank Account</p>
-            </div>
-
-            <div style="color: purple; text-align: right; margin-top: 20px; cursor: pointer;" onclick="goToUserPage()">
-                Go To User Page →
-            </div>
-        </div>
-    </div>
-
-    <script src="{{ url_for('static', filename='script.js') }}">        
-    </script>
-</body>
-
-</html>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 CoinLective. All rights reserved.</p>
+    </footer>
+    
+    <script src="borrowerJs.js"></script>

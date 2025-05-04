@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoinLective - Create Your Account</title>
+    <link rel="stylesheet" href="signUpCss.css">
+
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+    
+    <header>
+        <a href="homepage.html" class="logo">CoinLective</a>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="signup-header">
+                <h1 class="signup-title">Create Your CoinLective Account</h1>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">Sign Up</h2>
+                </div>
+                
+                <form id="signupForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="Phone_Number">Phone Number:</label>
+                        <input type="tel" id="Phone_Number" name="Phone_Number" class="form-control" placeholder="Enter Phone Number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Student_Id">Student ID:</label>
+                        <input type="text" id="Student_Id" name="Student_Id" class="form-control" placeholder="Enter your Student ID" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="First_Name">First Name:</label>
+                        <input type="text" id="First_Name" name="First_Name" class="form-control" placeholder="Enter First Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Last_Name">Last Name:</label>
+                        <input type="text" id="Last_Name" name="Last_Name" class="form-control" placeholder="Enter Last Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your Ashesi Email" required>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </div>
+                </form>
+                
+                <div class="login-link">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 CoinLective. All rights reserved.</p>
+    </footer>
+    <script src="signupJs.js"></script>
+</body>
+</html>

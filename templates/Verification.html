@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Email Verification - ILoan</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - CoinLective</title>
+    <link rel="stylesheet" href="VerificationCss.css">
 </head>
 <body>
-  <a href="{{ url_for('signup') }}">
-    <button>Back</button>
-  </a>
-
-
-  <h2>Verify Your Email</h2>
-  <p>We have sent a 4-digit code to your email. Please enter it below.</p>
-
-  <form action="{{ url_for('verification')}}" method="post">
-    <label for="code">Verification Code:</label>
-    <input type="text" id="code" name="code" maxlength="4" required />
-    <button type="submit">Verify</button>
-    <div class="error" id="error-message"></div>
-  </form>
-
-  <script src="{{ url_for('static', filename='script.js') }}"> 
-  </script>
-
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+    
+    <header>
+        <a href="homepage.html" class="logo">CoinLective</a>
+    </header>
+    
+    <main>
+        <div class="verification-card">
+            <h2 class="verification-title">Verify Your Email</h2>
+            <p class="verification-message">We've sent a 4-digit verification code to your email address. Please enter the code below to verify your account.</p>
+            
+            <form id="verificationForm" onsubmit="verifyCode(event)">
+                <div class="code-input-group">
+                    <input type="text" class="code-input" maxlength="1" required onkeyup="moveToNext(this, 1)">
+                    <input type="text" class="code-input" maxlength="1" required onkeyup="moveToNext(this, 2)">
+                    <input type="text" class="code-input" maxlength="1" required onkeyup="moveToNext(this, 3)">
+                    <input type="text" class="code-input" maxlength="1" required onkeyup="moveToNext(this, 4)">
+                </div>
+                
+                <div class="error-message" id="error-message"></div>
+                
+                <button type="submit" class="verify-button">Verify</button>
+            </form>
+            
+            <p class="resend-link">
+                Didn't receive a code? <a href="#" onclick="resendCode(event)">Resend code</a>
+            </p>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 CoinLective. All rights reserved.</p>
+    </footer>
+    
+    <script src="VerificationJs.js"></script>
+    
 </body>
 </html>

@@ -1,0 +1,175 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #000;
+}
+
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images (3).jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+}
+
+header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #059669;
+    text-decoration: none;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.verification-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 100%;
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.verification-card:hover {
+    transform: translateY(-5px);
+}
+
+.verification-title {
+    font-size: 2rem;
+    color: #059669;
+    margin-bottom: 1.5rem;
+}
+
+.verification-message {
+    color: #c2c2c2;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.code-input-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 0.5rem;
+}
+
+.code-input {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+.code-input:focus {
+    outline: none;
+    border-color: #059669;
+}
+
+.verify-button {
+    background-color: #059669;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.verify-button:hover {
+    background-color: #05785a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.resend-link {
+    margin-top: 1.5rem;
+    color: #c2c2c2;
+    display: inline-block;
+}
+
+.resend-link a {
+    color: #059669;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.resend-link a:hover {
+    color: #05785a;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #e74c3c;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .verification-card {
+        padding: 1.5rem;
+    }
+    
+    .code-input {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.2rem;
+    }
+}

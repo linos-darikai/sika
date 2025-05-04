@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LendConnect - User Profile</title>
+    <link rel="stylesheet" href="userprofileCss.css">
+
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <div class="overlay"></div>
+    
+    <header>
+        <a href="homepage.html" class="logo">LendConnect</a>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="userprofile.html">Profile</a></li>
+                <li><a href="homepage.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="profile-header">
+                <h1 class="profile-title">Account Details</h1>
+                <div>
+                    <button class="btn btn-primary">Edit</button>
+                </div>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Personal Information</h2>
+                    </div>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" value="John" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="surname">Surname</label>
+                            <input type="text" id="surname" class="form-control" value="Doe" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" value="john.doe@example.com" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" value="+1 (555) 123-4567" disabled>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Banking Information</h2>
+                    </div>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="bank-account">Bank Account</label>
+                            <input type="text" id="bank-account" class="form-control" value="**** **** **** 1234" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="main-account">Main Account</label>
+                            <input type="text" id="main-account" class="form-control" value="Checking Account" disabled>
+                        </div>
+                        
+                        <div class="code-name">
+                            Your unique code name: <span>GreenFalcon92</span>
+                        </div>
+                        
+                        <div class="transaction-history">
+                            <a href="#" class="transaction-link">
+                                <span>View Transaction History</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Connected Department</h2>
+                    </div>
+                    
+                    <p>Connect with our loan department to view your loan history and transaction records.</p>
+                    <br>
+                    <a href="#" class="btn btn-secondary">Connect to Loan Department</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 LendConnect. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

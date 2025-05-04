@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoinLective - Lender Dashboard</title>     
+    <link rel="stylesheet" href="lenderCss.css">
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="overlay"></div>
+    
+    <header>
+        <a href="dashboard.html" class="logo">CoinLective</a>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="dashboard.html">My Loans</a></li>
+                <li><a href="userprofile.html">Profile</a></li>
+                <li><a href="homepage.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Welcome, Lender</h1>
+                <div class="user-actions">
+                    <a href="#" class="btn btn-secondary">My Portfolio</a>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">Fund a Loan</h2>
+                </div>
+                
+                <form id="fundForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Enter Loan Amount:</label>
+                        <input type="number" id="amount" class="form-control" placeholder="Amount in GHS" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bank">Bank Name:</label>
+                        <input type="text" id="bank" class="form-control" placeholder="Enter your bank name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bankNo">Bank Account Number:</label>
+                        <input type="number" id="bankNo" class="form-control" placeholder="Enter your account number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interestRate">Desired Interest on Return:</label>
+                        <input type="number" id="interestRate" class="form-control" placeholder="Interest %" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loanDuration">By what date should your money be returned?</label>
+                        <input type="date" id="loanDuration" class="form-control" required>
+                    </div>
+                    
+                    <p class="confirmation-note">Verify your details before confirming!</p>
+                    
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">Process Loan Funding</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">Your Lending Statistics</h2>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+                    <div>
+                        <h3 style="color: #059669; margin-bottom: 0.5rem;">Total Funded</h3>
+                        <p style="font-size: 1.8rem; font-weight: bold;">GHS 0.00</p>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: #059669; margin-bottom: 0.5rem;">Active Loans</h3>
+                        <p style="font-size: 1.8rem; font-weight: bold;">0</p>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: #059669; margin-bottom: 0.5rem;">Average Interest</h3>
+                        <p style="font-size: 1.8rem; font-weight: bold;">0%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 CoinLective. All rights reserved.</p>
+    </footer>
+
+    <script src="lenderJs.js"></script>
+
+</body>
+</html>

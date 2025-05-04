@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from sqlalchemy import text
 
 
 
@@ -91,16 +92,7 @@ class Verification(db.Model):
     
     def __repr__(self):
         return f'<Verification {self.verification_ID} for User {self.User_ID}>'
-from sqlalchemy import text
 
-@app.route('/test-db')
-def test_db():
-    try:
-        # explicitly use text() for raw SQL
-        result = db.session.execute(text("SELECT 1"))
-        return "✅ DB Connection successful!"
-    except Exception as e:
-        return f"❌ DB Connection failed: {e}"
 
 
 @app.route('/')

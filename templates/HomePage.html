@@ -1,28 +1,67 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>My Sign Up Page</title> 
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LendConnect - Home</title>    
+    <link rel="stylesheet" href="homepageCSS.css">
+
 </head>
-
 <body>
+    <div class="bg-image"></div>
+    
+    <div class="overlay"></div>
+    
+    <header>
+        <a href="dashboard.html" class="logo">LendConnect</a>
+    </header>
+    
+    <main>
+        <div class="container">
+            <section class="hero">
+                <h1>Simple, Fast & Secure Borrowing</h1>
+                <p>
+                    LendConnect connects borrowers with lenders in a secure, transparent platform. 
+                    Get competitive rates, flexible terms, and quick approvals for your financial needs.
+                    Dear Ashesi Community, welcome to LendConnect. 
+                </p>
+                
+                <div class="cta-buttons">
+                    <a href="signup.html" class="btn btn-primary">Create Account</a>
+                    <a href="login.html" class="btn btn-secondary">Log In</a>
+    
+                  
+                </div>
+            </section>
+            
+            <section class="features">
+                <div class="feature-box">
+                    <div class="feature-icon">💰</div>
+                    <h3>Quick Loans</h3>
+                    <p>Get matched with lenders and receive funds directly to your account in as little as 24 hours.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Platform</h3>
+                    <p>Your personal and financial information is protected with bank-level security and encryption.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">📊</div>
+                    <h3>Competitive Rates</h3>
+                    <p>Compare offers from multiple lenders to find the best terms and lowest interest rates available.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 LendConnect. All Rights Reserved.</p>
+    </footer>
+    
 
-  
-  <h1>Welcome to ILoan!</h1>
-
-  
-  <p>Dear Ashesi Community, welcome to ILoan. Our vision is to grow together through easy, accessible, and community-focused loans.</p>
-
-
-  <a href="{{ url_for('signup') }}"><button>Create Account</button></a>
-  <a href="{{ url_for('login') }}"><button>Login</button></a>
-  
-
-  
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-
+    <script src="homepageJs.js"></script>
+    
 </body>
 </html>
